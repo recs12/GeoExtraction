@@ -1,0 +1,14 @@
+{
+  "version": 2,
+  "dgSpecHash": "NPUqjNLRqIibhD5ZUrQmWnlZw2BoGZjGYn0DwpXVw4zXAXnMm9oXLk6BA9g+fol1ywr90bJlvnxBIpLQsBP1Jw==",
+  "success": true,
+  "projectFilePath": "C:\\Users\\recs\\OneDrive - Premier Tech\\Bureau\\GEO\\F#\\GeoExtraction\\GeoExtraction.fsproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\recs\\.nuget\\packages\\fsharp.core\\6.0.2\\fsharp.core.6.0.2.nupkg.sha512",
+    "C:\\Users\\recs\\.nuget\\packages\\microsoft.netcore.app.runtime.win-x64\\6.0.3\\microsoft.netcore.app.runtime.win-x64.6.0.3.nupkg.sha512",
+    "C:\\Users\\recs\\.nuget\\packages\\microsoft.windowsdesktop.app.runtime.win-x64\\6.0.3\\microsoft.windowsdesktop.app.runtime.win-x64.6.0.3.nupkg.sha512",
+    "C:\\Users\\recs\\.nuget\\packages\\microsoft.aspnetcore.app.runtime.win-x64\\6.0.3\\microsoft.aspnetcore.app.runtime.win-x64.6.0.3.nupkg.sha512",
+    "C:\\Users\\recs\\.nuget\\packages\\microsoft.netcore.app.crossgen2.win-x64\\6.0.3\\microsoft.netcore.app.crossgen2.win-x64.6.0.3.nupkg.sha512"
+  ],
+  "logs": []
+}
