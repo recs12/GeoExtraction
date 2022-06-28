@@ -65,12 +65,13 @@ let main args =
     printfn "Enter the path to the directory you want to create the report:"
     let reportCSVDir = Console.ReadLine()
     let CSVFile = Path.Combine(reportCSVDir, "gravures.csv")
-    printfn "Given path: %A" CSVFile
+    printfn "Csv report will be generated at: %A" CSVFile
     createCSV  CSVFile |>ignore
-    for _file in (globglob args[0]) do
-        let fileName_ = Path.GetFileName(_file) 
-        let directoryName_ = Path.GetDirectoryName(_file) 
-        let (totalGravures, idxAndGravure) = GetFileGravures _file
-        for idx, line, mark in idxAndGravure do
-            appendCSV CSVFile directoryName_ fileName_ totalGravures idx  (line + 1)  mark |> ignore
-    0   
+    if args.Length > 0 then 
+        for _file in (globglob args[0]) do
+            let fileName_ = Path.GetFileName(_file) 
+            let directoryName_ = Path.GetDirectoryName(_file) 
+            let (totalGravures, idxAndGravure) = GetFileGravures _file
+            for idx, line, mark in idxAndGravure do
+                appendCSV CSVFile directoryName_ fileName_ totalGravures idx  (line + 1)  mark |> ignore
+    0

@@ -44,6 +44,11 @@
               "target": "Package",
               "version": "[6.0.2, )",
               "generatePathProperty": true
+            },
+            "System.Linq.Parallel": {
+              "target": "Package",
+              "version": "[4.3.0, )",
+              "generatePathProperty": true
             }
           },
           "imports": [

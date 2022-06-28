@@ -14,6 +14,7 @@
     <SourceRoot Include="C:\Program Files (x86)\Microsoft Visual Studio\Shared\NuGetPackages\" />
   </ItemGroup>
   <PropertyGroup Condition=" '$(ExcludeRestorePackageImports)' != 'true' ">
+    <PkgSystem_Linq_Parallel Condition=" '$(PkgSystem_Linq_Parallel)' == '' ">C:\Users\recs\.nuget\packages\system.linq.parallel\4.3.0</PkgSystem_Linq_Parallel>
     <PkgFSharp_Core Condition=" '$(PkgFSharp_Core)' == '' ">C:\Users\recs\.nuget\packages\fsharp.core\6.0.2</PkgFSharp_Core>
   </PropertyGroup>
 </Project>
