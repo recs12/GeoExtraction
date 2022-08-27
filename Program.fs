@@ -10,6 +10,8 @@ open System.IO
 open FSharp.Collections
 
 
+
+
 let globglob (folder:string) =
     Directory.GetFileSystemEntries(folder, "*.GEO", SearchOption.AllDirectories)
 
@@ -66,25 +68,84 @@ let appendCSV (_path:string) (folderPath:string) (filename:string) (totalNumberO
     printfn "|%*s|%*s|%*i|%*i|%*i|%*s|%*s|" 85 folderPath 20 filename 3 totalNumberOfEngravings 3 engraving 5 engravingLineNumber 10 engravingText 10 "-"
     file.WriteLine($"{folderPath},{filename},{totalNumberOfEngravings},{engraving},{engravingLineNumber},{engravingText},")
 
+type Result<'SuccessType, 'ErrorType> =
+| Ok of 'SuccessType
+| Error of 'ErrorType
 
+
+let pathCannotBeEmpty _path =
+    if _path = "" then 
+        Error "[!] Error: Path cannot be empty"
+    else 
+        Ok _path
+
+let pathDoesExist _path =
+    if Directory.Exists(_path) then 
+        Error "[!] Error: Path does not exist"
+    else 
+        Ok _path
+
+let bind switchFunction  twoTrackInput  =
+    match twoTrackInput  with
+    | Ok s -> switchFunction  s
+    | Error e -> Error e
+
+// infix 
+let (>>=) twoTrackInput switchFunction = 
+    bind switchFunction twoTrackInput
+
+let foderPathValidation x = 
+    // convert from switch to two-track input
+    // Data oriented
+    x
+    |> pathCannotBeEmpty 
+    >>= pathDoesExist 
+    // check if any GEO files exist
+
+
+    
 [<EntryPoint>]
 let main args =
 
     printfn "[INPUT] Enter the root folder for GEOs:" // No quotes needed in the input path.
     let rootGeoDir = Console.ReadLine()
+    foderPathValidation rootGeoDir
+    |> printfn "Result1=%A"
+    // if the path is invalid to app should fail immediatly
+
+
+
+
+    //***railway oriented programming
+    // check if path different of ""
+    // check if the syntax of path is valid.
+    // checker path exist
+    // checker path if a folder
 
     printfn "[INPUT] Enter the path to the directory you want to create the report:" // No quotes needed in the input path.
     let reportCSVDir = Console.ReadLine()
+    
+    //***railway oriented programming
+    // check if path different of ""
+    // check if the syntax of path is valid.
+    // checker path exist
+    // check if already a report
+
+
     let CSVFile = Path.Combine(reportCSVDir, "gravures.csv")
 
     createCSV  CSVFile |>ignore
-    for _file in (globglob rootGeoDir) do
+    // for _file in (globglob rootGeoDir) do
+
+    (globglob rootGeoDir)
+    |> Array.iter (fun _file ->
         let fileName_ = Path.GetFileName(_file) 
         let directoryName_ = Path.GetDirectoryName(_file) 
         let (totalGravures, idxAndGravure) = GetFileGravures _file
+
         idxAndGravure 
             |> Array.iter (fun (idx, line, mark) -> appendCSV CSVFile directoryName_ fileName_ totalGravures idx  (line + 1)  mark)
-            
+    )
     printfn "CSV successfully created:\n%A" CSVFile
     printfn "Press any key to exit..."
     Console.ReadLine()|> ignore
